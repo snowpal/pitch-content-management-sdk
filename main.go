@@ -2,11 +2,10 @@ package main
 
 import (
 	log "github.com/sirupsen/logrus"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/recipes"
+	"github.com/snowpal/pitch-content-management-sdk/lib/recipes"
 )
 
-func main() {
-	recipeID := 1
+func runRecipe(recipeID int) {
 	switch recipeID {
 	case 1:
 		log.Info("Run Recipe1")
@@ -18,49 +17,43 @@ func main() {
 		break
 	case 3:
 		log.Info("Run Recipe3")
-		recipes.CreatePrivateConversation()
-		break
-	case 4:
-		log.Info("Run Recipe4")
 		recipes.AddAndLinkResources()
 		break
-	case 5:
+	case 4:
 		log.Info("Run Recipe5")
 		recipes.ShareBlock()
 		break
+	case 5:
+		log.Info("Run Recipe5")
+		recipes.GetAllKeys()
+		break
 	case 6:
 		log.Info("Run Recipe6")
-		recipes.GetAllKeys()
+		recipes.AddFavorite()
 		break
 	case 7:
 		log.Info("Run Recipe7")
-		recipes.AddFavorite()
+		recipes.FetchScheduler()
 		break
 	case 8:
 		log.Info("Run Recipe8")
-		recipes.FetchScheduler()
+		recipes.AddRelation()
 		break
 	case 9:
 		log.Info("Run Recipe9")
-		recipes.AddRelation()
+		recipes.GrantAclOnCustomBlock()
 		break
 	case 10:
 		log.Info("Run Recipe10")
-		recipes.PublishStudentGrade()
-		break
-	case 11:
-		log.Info("Run Recipe11")
-		recipes.AddProjectList()
-		break
-	case 12:
-		log.Info("Run Recipe12")
-		recipes.GrantAclOnCustomBlock()
-		break
-	case 13:
-		log.Info("Run Recipe13")
 		recipes.UpdateAttributes()
 		break
 	default:
 		log.Info("pick a specific recipe to run")
+	}
+}
+
+func main() {
+	for i := 1; i <= 10; i++ {
+		runRecipe(i)
 	}
 }

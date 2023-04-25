@@ -6,9 +6,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 )
 
 func GetUsersProfile(jwtToken string) (response.Profile, error) {

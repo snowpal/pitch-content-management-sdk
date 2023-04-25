@@ -3,9 +3,9 @@ package recipes
 import (
 	"fmt"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/attributes"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers/recipes"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/attributes"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
 
 	log "github.com/sirupsen/logrus"
 )
