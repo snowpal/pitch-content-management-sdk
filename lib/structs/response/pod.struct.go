@@ -32,10 +32,6 @@ type Pod struct {
 	CanUnpublish bool  `json:"canUnpublish"`
 	PublicKey    *bool `json:"publicKey"`
 
-	// Project Key Attribute
-	ProjectKanbanMode *bool   `json:"projectKanbanMode"`
-	ProjectListName   *string `json:"projectListName"`
-
 	// Time Attributes
 	DueDate string `json:"podDueDate"`
 

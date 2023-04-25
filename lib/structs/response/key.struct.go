@@ -19,10 +19,9 @@ type Key struct {
 	Attributes        []common.DisplayAttribute `json:"attributes"`
 
 	// Boolean Attributes
-	Archived          *bool `json:"archived"`
-	KanbanMode        *bool `json:"kanbanMode"`
-	ProjectKanbanMode *bool `json:"projectKanbanMode"`
-	Public            *bool `json:"public"`
+	Archived   *bool `json:"archived"`
+	KanbanMode *bool `json:"kanbanMode"`
+	Public     *bool `json:"public"`
 
 	// Count Attributes
 	BlocksCount     *int `json:"blocksCount"`

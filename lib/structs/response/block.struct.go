@@ -31,9 +31,6 @@ type Block struct {
 	CanUnlink  *bool `json:"canUnlink"`
 	PublicKey  *bool `json:"publicKey"`
 
-	// Project Key Attribute
-	ProjectKanbanMode *bool `json:"projectKanbanMode"`
-
 	// Time Attributes
 	DueDate   string `json:"blockDueDate"`
 	StartTime string `json:"blockStartTime"`
