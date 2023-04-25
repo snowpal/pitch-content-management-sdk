@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers"
 )
 
 type FollowerReqBody struct {

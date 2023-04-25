@@ -1,15 +1,15 @@
 package recipes
 
 import (
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/scheduler"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers/recipes"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/common"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/request"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/scheduler"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 
-	blocks "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/blocks/blocks.1"
-	keyPods "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/key_pods/key_pods.1"
+	blocks "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/blocks/blocks.1"
+	keyPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/key_pods/key_pods.1"
 
 	log "github.com/sirupsen/logrus"
 )

@@ -1,15 +1,15 @@
 package recipes
 
 import (
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/common"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/request"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
 
-	blockPods "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/block_pods/block_pods.1"
-	blocks "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/blocks/blocks.1"
-	keyPods "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/key_pods/key_pods.1"
-	recipes "github.com/snowpal/pitch-building-blocks-sdk/lib/helpers/recipes"
-	response "github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	blockPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/block_pods/block_pods.1"
+	blocks "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/blocks/blocks.1"
+	keyPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/key_pods/key_pods.1"
+	recipes "github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
+	response "github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 
 	log "github.com/sirupsen/logrus"
 )
