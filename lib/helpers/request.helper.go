@@ -1,14 +1,15 @@
 package helpers
 
 import (
+	log "github.com/sirupsen/logrus"
+
 	"encoding/json"
 	"errors"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/config"
 	"net/http"
 	"strings"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/config"
 	"golang.org/x/exp/slices"
 )
 

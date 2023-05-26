@@ -2,8 +2,11 @@ package main
 
 import (
 	log "github.com/sirupsen/logrus"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/config"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/recipes"
+	"strconv"
+
+	"github.com/snowpal/pitch-content-management-sdk/lib/config"
+	"github.com/snowpal/pitch-content-management-sdk/lib/recipes"
+	"os"
 )
 
 func main() {
@@ -13,7 +16,17 @@ func main() {
 		return
 	}
 
-	recipeID := 1
+	var recipeID int
+	recipeIDInEnv := os.Getenv("RECIPE_ID")
+	if len(recipeIDInEnv) == 0 {
+		recipeID = 1
+	} else {
+		recipeID, err = strconv.Atoi(recipeIDInEnv)
+		if err != nil {
+			recipeID = 1
+		}
+	}
+
 	switch recipeID {
 	case 1:
 		log.Info("Run Recipe1")
@@ -24,47 +37,35 @@ func main() {
 		recipes.GetResourceAttributes()
 		break
 	case 3:
-		log.Info("Run Recipe3")
-		recipes.CreatePrivateConversation()
-		break
-	case 4:
 		log.Info("Run Recipe4")
 		recipes.AddAndLinkResources()
 		break
-	case 5:
+	case 4:
 		log.Info("Run Recipe5")
 		recipes.ShareBlock()
 		break
-	case 6:
+	case 5:
 		log.Info("Run Recipe6")
 		recipes.GetAllKeys()
 		break
-	case 7:
+	case 6:
 		log.Info("Run Recipe7")
 		recipes.AddFavorite()
 		break
-	case 8:
+	case 7:
 		log.Info("Run Recipe8")
 		recipes.FetchScheduler()
 		break
-	case 9:
+	case 8:
 		log.Info("Run Recipe9")
 		recipes.AddRelation()
 		break
-	case 10:
+	case 9:
 		log.Info("Run Recipe10")
-		recipes.PublishStudentGrade()
-		break
-	case 11:
-		log.Info("Run Recipe11")
-		recipes.AddProjectList()
-		break
-	case 12:
-		log.Info("Run Recipe12")
 		recipes.GrantAclOnCustomBlock()
 		break
-	case 13:
-		log.Info("Run Recipe13")
+	case 10:
+		log.Info("Run Recipe11")
 		recipes.UpdateAttributes()
 		break
 	default:
