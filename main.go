@@ -37,35 +37,39 @@ func main() {
 		recipes.GetResourceAttributes()
 		break
 	case 3:
+		log.Info("Run Recipe3")
+		recipes.CreatePrivateConversation()
+		break
+	case 4:
 		log.Info("Run Recipe4")
 		recipes.AddAndLinkResources()
 		break
-	case 4:
+	case 5:
 		log.Info("Run Recipe5")
 		recipes.ShareBlock()
 		break
-	case 5:
+	case 6:
 		log.Info("Run Recipe6")
 		recipes.GetAllKeys()
 		break
-	case 6:
+	case 7:
 		log.Info("Run Recipe7")
 		recipes.AddFavorite()
 		break
-	case 7:
+	case 8:
 		log.Info("Run Recipe8")
 		recipes.FetchScheduler()
 		break
-	case 8:
+	case 9:
 		log.Info("Run Recipe9")
 		recipes.AddRelation()
 		break
-	case 9:
-		log.Info("Run Recipe10")
+	case 10:
+		log.Info("Run Recipe12")
 		recipes.GrantAclOnCustomBlock()
 		break
-	case 10:
-		log.Info("Run Recipe11")
+	case 11:
+		log.Info("Run Recipe13")
 		recipes.UpdateAttributes()
 		break
 	default:
