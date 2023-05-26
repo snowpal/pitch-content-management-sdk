@@ -202,6 +202,18 @@ const (
 )
 
 const (
+	RouteConversationsGetUnreadConversationsCount         = "conversations/unread-status"
+	RouteConversationsGetUserConversations                = "conversations"
+	RouteConversationsAddPrivateOrGroupConversation       = "conversations"
+	RouteConversationsGetConversationForGivenUsernames    = "conversations/by-usernames?userNames=%s"
+	RouteConversationsSendMessageToAnExistingConversation = "conversations/%s/messages"
+	RouteConversationsGetConversation                     = "conversations/%s"
+	RouteConversationsDeleteConversation                  = "conversations/%s"
+	RouteConversationsLeaveConversation                   = "conversations/%s/leave"
+	RouteConversationsArchiveConversation                 = "conversations/%s/archive"
+)
+
+const (
 	RouteDashboardGetDashboardDetails              = "dashboard/combined-responses"
 	RouteDashboardGetRecentlyModifiedBlocksAndPods = "dashboard/recently-modified"
 	RouteDashboardGetUnreadCount                   = "dashboard/unread-count"
