@@ -202,18 +202,6 @@ const (
 )
 
 const (
-	RouteConversationsGetUnreadConversationsCount         = "conversations/unread-status"
-	RouteConversationsGetUserConversations                = "conversations"
-	RouteConversationsAddPrivateOrGroupConversation       = "conversations"
-	RouteConversationsGetConversationForGivenUsernames    = "conversations/by-usernames?userNames=%s"
-	RouteConversationsSendMessageToAnExistingConversation = "conversations/%s/messages"
-	RouteConversationsGetConversation                     = "conversations/%s"
-	RouteConversationsDeleteConversation                  = "conversations/%s"
-	RouteConversationsLeaveConversation                   = "conversations/%s/leave"
-	RouteConversationsArchiveConversation                 = "conversations/%s/archive"
-)
-
-const (
 	RouteDashboardGetDashboardDetails              = "dashboard/combined-responses"
 	RouteDashboardGetRecentlyModifiedBlocksAndPods = "dashboard/recently-modified"
 	RouteDashboardGetUnreadCount                   = "dashboard/unread-count"
@@ -221,7 +209,6 @@ const (
 	RouteDashboardGetPodsAndTasksDueShortly        = "dashboard/due-shortly/pods-and-tasks"
 	RouteDashboardGetBlocksDueShortly              = "dashboard/due-shortly/blocks"
 	RouteDashboardGetUnreadNotifications           = "dashboard/notifications/unread-status"
-	RouteDashboardGetUnreadConversations           = "dashboard/conversations/unread-status"
 )
 
 const (
@@ -396,32 +383,6 @@ const (
 )
 
 const (
-	RouteProjectKeysAddAProjectPod               = "blocks/%s/project-pods?keyId=%s&projectListId=%s"
-	RouteProjectKeysAddProjectPodBasedOnTemplate = "blocks/%s/project-pods/by-template?keyId=%s&projectListId=%s&templateId=%s&excludeTasks=%s"
-	RouteProjectKeysLinkProjectPodToBlock        = "blocks/%s/project-pods/%s/link?keyId=%s&projectListId=%s"
-	RouteProjectKeysReorderProjectPods           = "blocks/%s/project-pods/reorder?keyId=%s"
-	RouteProjectKeysCopyProjectPod               = "project-pods/%s/copy?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s"
-	RouteProjectKeysMoveProjectPod               = "project-pods/%s/move?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s"
-	RouteProjectKeysCopyProjectBlock             = "blocks/%s/project-pods/copy?keyId=%s&targetKeyId=%s&allPods=%s&allTasks=%s"
-	RouteProjectKeysAssignProjectPod             = "project-pods/%s/assign?keyId=%s&blockId=%s"
-	RouteProjectKeysUnassignProjectPod           = "project-pods/%s/unassign?keyId=%s&blockId=%s"
-)
-
-const (
-	RouteProjectKeysAddProjectBlockList       = "blocks/%s/project-block-lists?keyId=%s"
-	RouteProjectKeysGetProjectLists           = "blocks/%s/project-block-lists?keyId=%s"
-	RouteProjectKeysCopyPodsInProjectList     = "project-block-lists/%s/pods/copy-all?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s&allPods=%s&allTasks=%s"
-	RouteProjectKeysBulkCopyPodsInProjectList = "project-block-lists/%s/pods/copy?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s&allTasks=%s&podIds=%s"
-	RouteProjectKeysMovePodsInProjectList     = "project-block-lists/%s/pods/move-all?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s&allPods=%s"
-	RouteProjectKeysBulkMovePodsInProjectList = "project-block-lists/%s/pods/move?keyId=%s&blockId=%s&targetKeyId=%s&targetBlockId=%s&targetProjectListId=%s&podIds=%s"
-	RouteProjectKeysMoveProjectList           = "blocks/%s/project-block-lists/%s/move?keyId=%s&targetKeyId=%s&targetBlockId=%s&targetPosition=%s"
-	RouteProjectKeysGetProjectList            = "blocks/%s/project-block-lists/%s?keyId=%s"
-	RouteProjectKeysRenameProjectList         = "blocks/%s/project-block-lists/%s?keyId=%s"
-	RouteProjectKeysReorderProjectList        = "blocks/%s/project-block-lists/reorder?keyId=%s"
-	RouteProjectKeysArchiveProjectList        = "blocks/%s/project-block-lists/%s/archive?keyId=%s"
-)
-
-const (
 	RouteRegistrationRegisterNewUserByEmail = "app/users/sign-up"
 	RouteRegistrationSignInByEmail          = "app/users/sign-in"
 	RouteRegistrationResetPassword          = "app/users/reset-password"
@@ -487,28 +448,6 @@ const (
 const (
 	RouteSearchSearchKeyBlockOrPodByToken = "search?token=%s"
 	RouteSearchSearchUserByToken          = "search/users?token=%s"
-)
-
-const (
-	RouteTeacherKeysGetAttachmentSubmissionsAsStudent = "classroom-pods/%s/submissions/attachments/as-student?keyId=%s&blockId=%s"
-	RouteTeacherKeysGetCommentSubmissionsAsStudent    = "classroom-pods/%s/submissions/comments/as-student?keyId=%s&blockId=%s"
-	RouteTeacherKeysGetStudentsInABlock               = "classroom-blocks/%s/students?keyId=%s"
-)
-
-const (
-	RouteTeacherKeysGetStudentAttachmentSubmissionsAsTeacher  = "classroom-pods/%s/submissions/attachments/as-teacher?studentId=%s&keyId=%s&blockId=%s"
-	RouteTeacherKeysGetStudentCommentSubmissionsAsTeacher     = "classroom-pods/%s/submissions/comments/as-teacher?studentId=%s&keyId=%s&blockId=%s"
-	RouteTeacherKeysAddAttachmentToTeacherPodAsTeacher        = "classroom-pods/%s/attachments/as-teacher?keyId=%s&blockId=%s"
-	RouteTeacherKeysAddCommentToTeacherPodAsTeacher           = "classroom-pods/%s/comments/as-teacher?keyId=%s&blockId=%s"
-	RouteTeacherKeysGetBlockAndPodsGradesForAStudentAsTeacher = "classroom-blocks/%s/student-grades/as-teacher?studentUserId=%s&keyId=%s"
-	RouteTeacherKeysPublishStudentGradesForABlock             = "classroom-blocks/%s/student-grades/publish?keyId=%s"
-	RouteTeacherKeysBulkPublishPodGradesForAStudent           = "classroom-pods/students/%s/grades/publish?keyId=%s&blockId=%s"
-	RouteTeacherKeysBulkPublishPodGradesForStudents           = "classroom-pods/%s/students/grades/publish?keyId=%s&blockId=%s"
-	RouteTeacherKeysGetBlockGradesForStudents                 = "classroom-blocks/%s/students/grades?keyId=%s"
-	RouteTeacherKeysGetPodGradesForStudents                   = "classroom-pods/%s/students/grades?keyId=%s&blockId=%s"
-	RouteTeacherKeysAssignGradeToStudent                      = "classroom-blocks/%s/student/grade?studentUserId=%s&keyId=%s"
-	RouteTeacherKeysAssignPodGradeForAStudentAsTeacher        = "classroom-pods/%s/student/grade?studentUserId=%s&keyId=%s&blockId=%s"
-	RouteTeacherKeysGetStudentProfile                         = "classroom/students/%s/profile?keyId=%s&blockId=%s"
 )
 
 const (

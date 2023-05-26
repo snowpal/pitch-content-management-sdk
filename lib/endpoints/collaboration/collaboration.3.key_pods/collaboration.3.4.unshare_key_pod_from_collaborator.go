@@ -6,10 +6,10 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	helpers2 "github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/common"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	helpers2 "github.com/snowpal/pitch-content-management-sdk/lib/helpers"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 )
 
 func UnshareKeyPodWithCollaborator(jwtToken string, podAclParam common.AclParam) (response.Pod, error) {

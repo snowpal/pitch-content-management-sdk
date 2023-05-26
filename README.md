@@ -1,4 +1,4 @@
-# pitch-building-blocks-sdk
+# pitch-content-management-sdk
 
 > SDK for a few Snowpal APIs.
 
