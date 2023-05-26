@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/sirupsen/logrus v1.9.0
+	github.com/snowpal/pitch-building-blocks-sdk v1.0.5
 	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
 )
