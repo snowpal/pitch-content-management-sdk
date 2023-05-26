@@ -1,12 +1,14 @@
 package main
 
 import (
-	log "github.com/sirupsen/logrus"
 	"strconv"
+
+	log "github.com/sirupsen/logrus"
+
+	"os"
 
 	"github.com/snowpal/pitch-content-management-sdk/lib/config"
 	"github.com/snowpal/pitch-content-management-sdk/lib/recipes"
-	"os"
 )
 
 func main() {
@@ -65,11 +67,11 @@ func main() {
 		recipes.AddRelation()
 		break
 	case 10:
-		log.Info("Run Recipe12")
+		log.Info("Run Recipe10")
 		recipes.GrantAclOnCustomBlock()
 		break
 	case 11:
-		log.Info("Run Recipe13")
+		log.Info("Run Recipe11")
 		recipes.UpdateAttributes()
 		break
 	default:
