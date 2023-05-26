@@ -221,6 +221,7 @@ const (
 	RouteDashboardGetPodsAndTasksDueShortly        = "dashboard/due-shortly/pods-and-tasks"
 	RouteDashboardGetBlocksDueShortly              = "dashboard/due-shortly/blocks"
 	RouteDashboardGetUnreadNotifications           = "dashboard/notifications/unread-status"
+	RouteDashboardGetUnreadConversations           = "dashboard/conversations/unread-status"
 )
 
 const (
