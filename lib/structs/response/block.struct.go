@@ -1,7 +1,7 @@
 package response
 
 import (
-	common2 "github.com/snowpal/pitch-building-blocks-sdk/lib/structs/common"
+	common2 "github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
 )
 
 type Blocks struct {
@@ -30,9 +30,6 @@ type Block struct {
 	KanbanMode *bool `json:"kanbanMode"`
 	CanUnlink  *bool `json:"canUnlink"`
 	PublicKey  *bool `json:"publicKey"`
-
-	// Project Key Attribute
-	ProjectKanbanMode *bool `json:"projectKanbanMode"`
 
 	// Time Attributes
 	DueDate   string `json:"blockDueDate"`

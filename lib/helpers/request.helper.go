@@ -1,13 +1,15 @@
 package helpers
 
 import (
+	log "github.com/sirupsen/logrus"
+
 	"encoding/json"
 	"errors"
 	"net/http"
 	"strings"
 
-	log "github.com/sirupsen/logrus"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/config"
 	"golang.org/x/exp/slices"
 )
 
@@ -43,14 +45,6 @@ func GetRequestBody(obj interface{}) (string, error) {
 	return res, nil
 }
 
-// Private Methods
-
-func addHeaders(req *http.Request) {
-	req.Header.Add("x-api-key", lib.XApiKey)
-	req.Header.Add("x-snowpal-product-code", lib.XProductCode)
-	req.Header.Add("Content-Type", "application/json")
-}
-
 func MakeRequest(req *http.Request) (*http.Response, error) {
 	client := &http.Client{}
 	res, err := client.Do(req)
@@ -61,4 +55,10 @@ func MakeRequest(req *http.Request) (*http.Response, error) {
 		return res, errors.New("API Request Failed")
 	}
 	return res, nil
+}
+
+func addHeaders(req *http.Request) {
+	req.Header.Add("x-api-key", config.GetValue("XApiKey"))
+	req.Header.Add("x-snowpal-product-code", config.GetValue("XProductCode"))
+	req.Header.Add("Content-Type", "application/json")
 }

@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
-	helpers2 "github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/request"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers"
+	helpers2 "github.com/snowpal/pitch-content-management-sdk/lib/helpers"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 )
 
 func GetBlockPods(jwtToken string, podsParam request.GetPodsParam) ([]response.Pod, error) {

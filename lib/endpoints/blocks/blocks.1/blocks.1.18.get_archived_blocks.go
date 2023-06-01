@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	helpers2 "github.com/snowpal/pitch-building-blocks-sdk/lib/helpers"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/request"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	helpers2 "github.com/snowpal/pitch-content-management-sdk/lib/helpers"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 )
 
 func GetArchivedBlocks(jwtToken string, blocksParam request.GetBlocksParam) ([]response.Block, error) {

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/common"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
 )
 
 type Keys struct {
@@ -19,10 +19,9 @@ type Key struct {
 	Attributes        []common.DisplayAttribute `json:"attributes"`
 
 	// Boolean Attributes
-	Archived          *bool `json:"archived"`
-	KanbanMode        *bool `json:"kanbanMode"`
-	ProjectKanbanMode *bool `json:"projectKanbanMode"`
-	Public            *bool `json:"public"`
+	Archived   *bool `json:"archived"`
+	KanbanMode *bool `json:"kanbanMode"`
+	Public     *bool `json:"public"`
 
 	// Count Attributes
 	BlocksCount     *int `json:"blocksCount"`

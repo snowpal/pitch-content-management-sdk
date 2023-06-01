@@ -1,15 +1,15 @@
 package recipes
 
 import (
-	"github.com/snowpal/pitch-building-blocks-sdk/lib"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/conversations"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/registration"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/helpers/recipes"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/request"
-	"github.com/snowpal/pitch-building-blocks-sdk/lib/structs/response"
+	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/conversations"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/registration"
+	"github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
+	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 
 	log "github.com/sirupsen/logrus"
-	profiles "github.com/snowpal/pitch-building-blocks-sdk/lib/endpoints/profile"
+	profiles "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/profile"
 )
 
 // CreatePrivateConversation Sign up, activate user, sign in, get all keys.
