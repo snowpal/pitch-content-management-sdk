@@ -1,6 +1,6 @@
 # pitch-content-management-sdk
 
-This is our Project Management SDK for the API documented below.
+This is our Content Management SDK for the API documented below.
 - [Postman Workspace](https://content-management-api.snowpal.com)
 - [Guide and API Reference](https://developers.snowpal.com)
 
