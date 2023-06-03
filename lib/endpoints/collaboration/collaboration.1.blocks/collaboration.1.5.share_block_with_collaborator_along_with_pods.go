@@ -8,9 +8,10 @@ import (
 	"strings"
 
 	"github.com/snowpal/pitch-content-management-sdk/lib"
-	helpers2 "github.com/snowpal/pitch-content-management-sdk/lib/helpers"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
+
+	helpers2 "github.com/snowpal/pitch-content-management-sdk/lib/helpers"
 )
 
 type ShareBlockWithPodsReqBody struct {
