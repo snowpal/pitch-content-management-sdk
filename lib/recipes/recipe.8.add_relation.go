@@ -1,7 +1,12 @@
 package recipes
 
 import (
+	"fmt"
+
 	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/blocks/blocks.1"
+	keyPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/key_pods/key_pods.1"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/keys/keys.1"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/relations"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
 
@@ -34,14 +39,14 @@ func AddRelation() {
 	if err != nil {
 		return
 	}
-	log.Printf(".Block %s is related with pod %s successfully", block.Name, pod.Name)
+	log.Info(fmt.Sprintf(".Block %s is related with pod %s successfully", block.Name, pod.Name))
 
 	log.Info("Unrelate the block from key pod")
 	err = removeRelation(user, block, pod)
 	if err != nil {
 		return
 	}
-	log.Printf(".Block %s is unrelated from pod %s successfully", block.Name, pod.Name)
+	log.Info(fmt.Sprintf(".Block %s is unrelated from pod %s successfully", block.Name, pod.Name))
 }
 
 func removeRelation(user response.User, block response.Block, pod response.Pod) error {
@@ -64,15 +69,26 @@ func addRelation(user response.User) (response.Block, response.Pod, error) {
 		block response.Block
 		pod   response.Pod
 	)
-	key, err := recipes.AddCustomKey(user, RelationKeyName)
+	key, err := keys.AddKey(
+		user.JwtToken,
+		request.AddKeyReqBody{
+			Name: RelationKeyName,
+			Type: lib.CustomKeyType,
+		})
 	if err != nil {
 		return block, pod, err
 	}
-	block, err = recipes.AddBlock(user, RelationBlockName, key)
+	block, err = blocks.AddBlock(
+		user.JwtToken,
+		request.AddBlockReqBody{Name: RelationBlockName},
+		key.ID)
 	if err != nil {
 		return block, pod, err
 	}
-	pod, err = recipes.AddPod(user, RelationPodName, key)
+	pod, err = keyPods.AddKeyPod(
+		user.JwtToken,
+		request.AddPodReqBody{Name: RelationPodName},
+		key.ID)
 	if err != nil {
 		return block, pod, err
 	}

@@ -1,4 +1,4 @@
-package recipes
+package setupnewuser
 
 import (
 	"fmt"
@@ -9,20 +9,16 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GenerateDynamicEmail(nextNumber int) string {
-	return fmt.Sprintf("apiuser_rec%d_cm@yopmail.com", nextNumber)
-}
-
 func RegisterNewUser() (string, error) {
 	var err error
 	var user response.User
 
 	for i := 1; ; i += 1 {
-		email := GenerateDynamicEmail(i)
-		log.Info("Register new user with ", email)
+		email := fmt.Sprintf("apiuser_rec%d_cm@yopmail.com", i)
+		log.Info(fmt.Sprintf("Register new user with %s", email))
 		user, err = recipes.RegisterUser(email)
 		if err != nil {
-			log.Info(email, " is already registered.")
+			log.Info(fmt.Sprintf("%s is already registered.", email))
 		} else {
 			return user.Email, nil
 		}
