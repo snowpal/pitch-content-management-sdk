@@ -5,10 +5,10 @@ import (
 	"strconv"
 
 	"github.com/snowpal/pitch-content-management-sdk/lib/config"
+	"github.com/snowpal/pitch-content-management-sdk/lib/recipes"
 
 	log "github.com/sirupsen/logrus"
-	recipes "github.com/snowpal/pitch-content-management-sdk/lib/recipes"
-	newRecipes "github.com/snowpal/pitch-content-management-sdk/lib/recipes/recipe.12.initialize_user"
+	setupnewuser "github.com/snowpal/pitch-content-management-sdk/lib/recipes/recipe.12.setup_new_user"
 )
 
 func main() {
@@ -76,7 +76,7 @@ func main() {
 		break
 	case 12:
 		log.Info("Run Recipe12")
-		newRecipes.InitializeNewUser()
+		setupnewuser.SetupNewUser()
 		break
 	default:
 		log.Info("pick a specific recipe to run")

@@ -1,6 +1,8 @@
 package recipes
 
 import (
+	"fmt"
+
 	"github.com/snowpal/pitch-content-management-sdk/lib"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/conversations"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/registration"
@@ -53,7 +55,7 @@ func displayMessages(conversation response.Conversation, anotherUser response.Us
 		return err
 	}
 	for index, message := range *conversation.Messages {
-		log.Printf(".Message %d: %s (sent by %s at %s)", index, message.MessageText, message.AddedBy, message.MessageTime)
+		log.Info(fmt.Sprintf(".Message %d: %s (sent by %s at %s)", index, message.MessageText, message.AddedBy, message.MessageTime))
 	}
 	recipes.SleepAfter()
 	return nil

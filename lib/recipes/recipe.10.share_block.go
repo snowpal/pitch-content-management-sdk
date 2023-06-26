@@ -44,7 +44,7 @@ func ShareBlock() {
 	}
 
 	writeUser, err := getWriteUser(user, block)
-	fmt.Println(user.JwtToken)
+	log.Info(user.JwtToken)
 	if err != nil {
 		return
 	}
@@ -55,25 +55,25 @@ func ShareBlock() {
 	if err != nil {
 		return
 	}
-	log.Printf(".Notifications for the recent share displayed successfully")
+	log.Info(".Notifications for the recent share displayed successfully")
 	recipes.SleepAfter()
 
-	log.Printf("Update block name as a write user")
+	log.Info("Update block name as a write user")
 	recipes.SleepBefore()
 	var resBlock response.Block
 	resBlock, err = updateBlockAsWriteUser(writeUser, block)
 	if err != nil {
 		return
 	}
-	log.Printf(".Write user updated block name to %s successfully", resBlock.Name)
+	log.Info(fmt.Sprintf(".Write user updated block name to %s successfully", resBlock.Name))
 	recipes.SleepAfter()
 
-	log.Printf("Grant admin access to a user with read access")
+	log.Info("Grant admin access to a user with read access")
 	err = makeReadUserAsAdmin(user, block)
 	if err != nil {
 		return
 	}
-	log.Printf(".Admin access has been granted successfully")
+	log.Info(".Admin access has been granted successfully")
 }
 
 func getWriteUser(user response.User, block response.Block) (response.User, error) {
@@ -109,19 +109,27 @@ func getWriteUser(user response.User, block response.Block) (response.User, erro
 
 func shareBlock(user response.User) (response.Block, error) {
 	var block response.Block
-	key, err := recipes.AddCustomKey(user, KeyName)
+	key, err := keys.AddKey(
+		user.JwtToken,
+		request.AddKeyReqBody{
+			Name: KeyName,
+			Type: lib.CustomKeyType,
+		})
 	if err != nil {
 		return block, err
 	}
-	block, err = recipes.AddBlock(user, BlockName, key)
+	block, err = blocks.AddBlock(
+		user.JwtToken,
+		request.AddBlockReqBody{Name: BlockName},
+		key.ID)
 	if err != nil {
 		return block, err
 	}
-	err = recipes.SearchUserAndShareBlock(user, block, "api_read_user", lib.ReadAcl)
+	err = recipes.SearchUserAndShareBlock(user, block, lib.ReadUser, lib.ReadAcl)
 	if err != nil {
 		return block, err
 	}
-	err = recipes.SearchUserAndShareBlock(user, block, "api_write_user", lib.WriteAcl)
+	err = recipes.SearchUserAndShareBlock(user, block, lib.WriteUser, lib.WriteAcl)
 	if err != nil {
 		return block, err
 	}
@@ -133,10 +141,9 @@ func showNotificationsAsWriteUser(writeUser response.User) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(len(unreadNotifications))
 	for index, notification := range unreadNotifications {
 		if notification.Type == "acl" {
-			log.Printf(".Notification %d: %s", index, notification.Text)
+			log.Info(fmt.Sprintf(".Notification %d: %s", index, notification.Text))
 		}
 	}
 	return nil
