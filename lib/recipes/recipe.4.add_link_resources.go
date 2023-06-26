@@ -1,6 +1,8 @@
 package recipes
 
 import (
+	"fmt"
+
 	"github.com/snowpal/pitch-content-management-sdk/lib"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
@@ -8,6 +10,7 @@ import (
 	blockPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/block_pods/block_pods.1"
 	blocks "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/blocks/blocks.1"
 	keyPods "github.com/snowpal/pitch-content-management-sdk/lib/endpoints/key_pods/key_pods.1"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/keys/keys.1"
 	recipes "github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
 	response "github.com/snowpal/pitch-content-management-sdk/lib/structs/response"
 
@@ -39,11 +42,16 @@ func AddAndLinkResources() {
 	var newKey response.Key
 	log.Info("Add a new custom key")
 	recipes.SleepBefore()
-	newKey, err = recipes.AddCustomKey(user, Key1Name)
+	newKey, err = keys.AddKey(
+		user.JwtToken,
+		request.AddKeyReqBody{
+			Name: Key1Name,
+			Type: lib.CustomKeyType,
+		})
 	if err != nil {
 		return
 	}
-	log.Printf(".Key, %s is added successfully.", newKey.Name)
+	log.Info(fmt.Sprintf(".Key, %s is added successfully.", newKey.Name))
 	recipes.SleepAfter()
 
 	var (
@@ -59,7 +67,12 @@ func AddAndLinkResources() {
 	log.Info("Add another key")
 	recipes.SleepBefore()
 	var anotherKey response.Key
-	anotherKey, err = recipes.AddCustomKey(user, AnotherKeyName)
+	anotherKey, err = keys.AddKey(
+		user.JwtToken,
+		request.AddKeyReqBody{
+			Name: AnotherKeyName,
+			Type: lib.CustomKeyType,
+		})
 	if err != nil {
 		return
 	}
@@ -67,11 +80,14 @@ func AddAndLinkResources() {
 	log.Info("Add block")
 	recipes.SleepBefore()
 	var anotherBlock response.Block
-	anotherBlock, err = recipes.AddBlock(user, AnotherBlockName, newKey)
+	anotherBlock, err = blocks.AddBlock(
+		user.JwtToken,
+		request.AddBlockReqBody{Name: AnotherBlockName},
+		newKey.ID)
 	if err != nil {
 		return
 	}
-	log.Printf(".Block, %s is created successfully.", newBlock.Name)
+	log.Info(fmt.Sprintf(".Block, %s is created successfully.", newBlock.Name))
 	recipes.SleepAfter()
 
 	err = linkResources(user, anotherKey, anotherBlock, newBlock, newBlockPod, newPod)
@@ -98,7 +114,7 @@ func linkResources(
 	if err != nil {
 		return err
 	}
-	log.Printf(".Block Pod, %s is linked successfully to %s Key.", newPod.Name, anotherKey.Name)
+	log.Info(fmt.Sprintf(".Block Pod, %s is linked successfully to %s Key.", newPod.Name, anotherKey.Name))
 	recipes.SleepAfter()
 
 	log.Info("Link block into the other key")
@@ -111,7 +127,7 @@ func linkResources(
 	if err != nil {
 		return err
 	}
-	log.Printf(".Block, %s is linked successfully to %s Key.", newBlock.Name, anotherKey.Name)
+	log.Info(fmt.Sprintf(".Block, %s is linked successfully to %s Key.", newBlock.Name, anotherKey.Name))
 	recipes.SleepAfter()
 
 	log.Info("Link key pod into the other block")
@@ -125,7 +141,7 @@ func linkResources(
 	if err != nil {
 		return err
 	}
-	log.Printf(".Pod, %s is linked successfully to %s Block.", newPod.Name, anotherBlock.Name)
+	log.Info(fmt.Sprintf(".Pod, %s is linked successfully to %s Block.", newPod.Name, anotherBlock.Name))
 	recipes.SleepAfter()
 	return nil
 }
@@ -146,17 +162,20 @@ func addBlocksAndPods(user response.User, newKey response.Key) (response.Pod, re
 	if err != nil {
 		return pod, block, pod, err
 	}
-	log.Printf(".Key Pod, %s is created successfully in %s Key.", newPod.Name, newKey.Name)
+	log.Info(fmt.Sprintf(".Key Pod, %s is created successfully in %s Key.", newPod.Name, newKey.Name))
 	recipes.SleepAfter()
 
 	log.Info("Add a new block")
 	recipes.SleepBefore()
 	var newBlock response.Block
-	newBlock, err = recipes.AddBlock(user, Block1Name, newKey)
+	newBlock, err = blocks.AddBlock(
+		user.JwtToken,
+		request.AddBlockReqBody{Name: Block1Name},
+		newKey.ID)
 	if err != nil {
 		return pod, block, pod, err
 	}
-	log.Printf(".Block, %s is created successfully.", newBlock.Name)
+	log.Info(fmt.Sprintf(".Block, %s is created successfully.", newBlock.Name))
 	recipes.SleepAfter()
 
 	log.Info("Add a new block pod in this block")
@@ -173,7 +192,7 @@ func addBlocksAndPods(user response.User, newKey response.Key) (response.Pod, re
 	if err != nil {
 		return pod, block, pod, err
 	}
-	log.Printf(".Block Pod, %s is created successfully in %s Block.", newBlockPod.Name, newBlock.Name)
+	log.Info(fmt.Sprintf(".Block Pod, %s is created successfully in %s Block.", newBlockPod.Name, newBlock.Name))
 	recipes.SleepAfter()
 	return newPod, newBlock, newBlockPod, nil
 }

@@ -1,8 +1,6 @@
 package recipes
 
 import (
-	"fmt"
-
 	"github.com/snowpal/pitch-content-management-sdk/lib"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/registration"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/request"
@@ -19,14 +17,12 @@ func RegisterUser(email string) (response.User, error) {
 	}
 	user, err := registration.RegisterNewUserByEmail(signUpReqBody)
 	if err != nil {
-		fmt.Println(err)
 		return response.User{}, err
 	}
 
 	log.Info(".activate user ID: ", user.ID)
 	err = registration.ActivateUser(user.ID)
 	if err != nil {
-		fmt.Println(err)
 		return response.User{}, err
 	}
 	return user, nil

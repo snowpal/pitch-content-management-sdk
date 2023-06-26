@@ -1,7 +1,10 @@
 package recipes
 
 import (
+	"fmt"
+
 	"github.com/snowpal/pitch-content-management-sdk/lib"
+	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/keys/keys.1"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/scheduler"
 	"github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
 	"github.com/snowpal/pitch-content-management-sdk/lib/structs/common"
@@ -34,7 +37,12 @@ func FetchScheduler() {
 	}
 
 	var key response.Key
-	key, _ = recipes.AddCustomKey(user, SchedulerKeyName)
+	key, err = keys.AddKey(
+		user.JwtToken,
+		request.AddKeyReqBody{
+			Name: SchedulerKeyName,
+			Type: lib.CustomKeyType,
+		})
 	log.Info("Set due date for block")
 	err = setBlockDueDate(user, key)
 	if err != nil {
@@ -58,7 +66,10 @@ func FetchScheduler() {
 }
 
 func setBlockDueDate(user response.User, key response.Key) error {
-	block, err := recipes.AddBlock(user, SchedulerBlockName, key)
+	block, err := blocks.AddBlock(
+		user.JwtToken,
+		request.AddBlockReqBody{Name: SchedulerBlockName},
+		key.ID)
 	if err != nil {
 		return err
 	}
@@ -66,7 +77,7 @@ func setBlockDueDate(user response.User, key response.Key) error {
 	_, err = blocks.UpdateBlock(
 		user.JwtToken,
 		blocks.UpdateBlockReqBody{DueDate: &dueDate},
-		common.ResourceIdParam{BlockId: block.ID, KeyId: block.Key.ID})
+		common.ResourceIdParam{BlockId: block.ID, KeyId: key.ID})
 	if err != nil {
 		return err
 	}
@@ -74,7 +85,10 @@ func setBlockDueDate(user response.User, key response.Key) error {
 }
 
 func setPodDueDate(user response.User, key response.Key) error {
-	pod, err := recipes.AddPod(user, SchedulerPodName, key)
+	pod, err := keyPods.AddKeyPod(
+		user.JwtToken,
+		request.AddPodReqBody{Name: SchedulerPodName},
+		key.ID)
 	if err != nil {
 		return err
 	}
@@ -82,7 +96,7 @@ func setPodDueDate(user response.User, key response.Key) error {
 	_, err = keyPods.UpdateKeyPod(
 		user.JwtToken,
 		request.UpdatePodReqBody{DueDate: &dueDate},
-		common.ResourceIdParam{PodId: pod.ID, KeyId: pod.Key.ID})
+		common.ResourceIdParam{PodId: pod.ID, KeyId: key.ID})
 	if err != nil {
 		return err
 	}
@@ -95,10 +109,10 @@ func fetchSchedulerEvents(user response.User) error {
 		return err
 	}
 	for _, blockEvent := range allEvents.DueDateEvent.Blocks {
-		log.Printf(".Block %s is due on %s", blockEvent.Name, *blockEvent.DueDate)
+		log.Info(fmt.Sprintf(".Block %s is due on %s", blockEvent.Name, *blockEvent.DueDate))
 	}
 	for _, podEvent := range allEvents.DueDateEvent.Pods {
-		log.Printf(".Pod %s is due on %s", podEvent.Name, podEvent.DueDate)
+		log.Info(fmt.Sprintf(".Pod %s is due on %s", podEvent.Name, podEvent.DueDate))
 	}
 	return nil
 }
