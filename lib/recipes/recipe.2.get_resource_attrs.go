@@ -1,8 +1,6 @@
 package recipes
 
 import (
-	"fmt"
-
 	"github.com/snowpal/pitch-content-management-sdk/lib"
 	"github.com/snowpal/pitch-content-management-sdk/lib/endpoints/attributes"
 	"github.com/snowpal/pitch-content-management-sdk/lib/helpers/recipes"
@@ -27,5 +25,5 @@ func GetResourceAttributes() {
 		return
 	}
 
-	fmt.Println(resourceAttrs)
+	log.Info(resourceAttrs)
 }
